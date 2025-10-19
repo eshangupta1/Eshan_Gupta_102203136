@@ -113,7 +113,7 @@ Invoke-WebRequest -Method POST http://localhost:8000/api/ingest
 ```
 3) Frontend
 ```
-cd ..rontend
+cd frontend
 npm install
 copy .env.example .env
 npm run dev
