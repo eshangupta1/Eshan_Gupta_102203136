@@ -120,46 +120,110 @@ npm run dev
 ```
 Open http://localhost:5173 → Chat / Analytics.
 
-project/
-│
-├─ backend/
-│  ├─ app.py                   # FastAPI entry point
-│  ├─ config.py                # Environment settings
-│  ├─ routers/                 # API routes
-│  │   ├─ ingest.py            # CSV → embeddings → vector store
-│  │   ├─ recommend.py         # Semantic search
-│  │   ├─ generate.py          # AI product copy (LangChain + fallback)
-│  │   └─ analytics.py         # Stats for dashboard
-│  ├─ models/
-│  │   └─ embed_text.py        # NLP embeddings
-│  ├─ services/
-│  │   ├─ vector_store.py      # FAISS / vector DB
-│  │   ├─ schemas.py           # Request/response models
-│  │   └─ retrieval.py         # (optional logic)
-│  ├─ models/weights/          # Saved classifier model
-│  ├─ requirements.txt
-│  └─ .env.example
-│
-├─ frontend/
-│  ├─ src/
-│  │   ├─ routes/
-│  │   │   ├─ Chat.tsx         # Chat-style recommendation UI
-│  │   │   └─ Analytics.tsx    # Dashboard with charts
-│  │   ├─ components/          # UI components
-│  │   ├─ api.ts               # Axios API client
-│  │   └─ App.tsx / main.tsx   # Routing
-│  ├─ package.json
-│  └─ .env.example
-│
-├─ notebooks/
-│  ├─ analytics.ipynb          # EDA, insights, visualizations
-│  └─ train_models.ipynb       # ML model training + Zero-shot CLIP demo
-│
-├─ data/
-│  └─ raw.csv (not committed, local only) 
-│
-├─ README.md
-└─ .gitignore
+✅ 1. Backend (FastAPI Server)
+
+Handles all API logic, ML integration, embeddings, and data processing.
+
+Main files:
+
+app.py → FastAPI entry point
+
+config.py → Environment and settings
+
+Folders:
+
+routers/ (API endpoints)
+
+ingest.py → Load CSV → embed → store in vector DB
+
+recommend.py → Semantic similarity search (NLP-based)
+
+generate.py → AI product description (LangChain + fallback)
+
+analytics.py → Dataset statistics for dashboard
+
+models/
+
+embed_text.py → Text embedding logic (Sentence Transformers)
+
+services/
+
+vector_store.py → FAISS / vector DB wrapper
+
+schemas.py → Pydantic request/response models
+
+retrieval.py → (Optional) extra logic / reranking
+
+models/weights/
+
+Saved classifier model (text_cat_clf.pkl)
+
+Other backend files:
+
+requirements.txt → Backend dependencies
+
+.env.example → Template for environment variables (no secrets)
+
+✅ 2. Frontend (React Application)
+
+User interface for chat-style recommendations and analytics dashboard.
+
+Folder: frontend/
+
+src/ contains:
+
+routes/
+
+Chat.tsx → Chat-based recommendation UI
+
+Analytics.tsx → Charts & visualizations page
+
+components/ → Reusable UI elements (ProductCard, inputs, etc.)
+
+api.ts → Axios API client
+
+App.tsx & main.tsx → Routing and app setup
+
+Other frontend files:
+
+package.json → Dependencies & scripts
+
+.env.example → API base URL template
+
+✅ 3. Notebooks (Machine Learning & Analysis)
+
+analytics.ipynb
+
+Exploratory Data Analysis (EDA)
+
+Visualizations (price, categories, brands, etc.)
+
+Insights about the dataset
+
+train_models.ipynb
+
+Text classification model (TF-IDF + Logistic Regression)
+
+Evaluation (accuracy, classification report, confusion matrix)
+
+Saves model to backend/models/weights/
+
+✅ Includes Zero-shot CLIP (CV demo) to satisfy Computer Vision requirement
+
+✅ 4. Data
+
+data/raw.csv → Product dataset (local only, not committed to repo)
+
+.gitignore ensures no large or sensitive data is pushed
+
+✅ 5. Root Files
+
+README.md → Full project documentation
+
+.gitignore → Ignore venv, node_modules, .env, data, etc
+
+
+
 7. Notebooks (as required)
 ✅ analytics.ipynb
 
